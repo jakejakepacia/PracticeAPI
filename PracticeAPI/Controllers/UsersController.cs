@@ -53,5 +53,21 @@ namespace PracticeAPI.Controllers
 
             return Ok(result.Message);
         }
+
+        [HttpGet("test-db-connection")]
+        public async Task<IActionResult> TestDbConnection([FromServices] ApplicationDBContext context)
+        {
+            try
+            {
+                await context.Database.OpenConnectionAsync();
+                await context.Database.CloseConnectionAsync();
+                return Ok("DB connection works!");
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
     }
 }

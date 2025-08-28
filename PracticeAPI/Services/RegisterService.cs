@@ -37,7 +37,9 @@ namespace PracticeAPI.Services
 
         private bool CheckUsernameIfTaken(string username)
         {
-            return false;
+            var user = _dbContext.userAccount.FirstOrDefault(u => u.username == username);
+
+           return user != null;
         }
     }
 }
