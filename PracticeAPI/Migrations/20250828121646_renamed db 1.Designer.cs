@@ -11,8 +11,8 @@ using PracticeAPI.Data;
 namespace PracticeAPI.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20250828105041_renamed column id")]
-    partial class renamedcolumnid
+    [Migration("20250828121646_renamed db 1")]
+    partial class renameddb1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,7 +42,7 @@ namespace PracticeAPI.Migrations
 
                     b.HasKey("userId");
 
-                    b.ToTable("Users");
+                    b.ToTable("userAccount");
                 });
 #pragma warning restore 612, 618
         }

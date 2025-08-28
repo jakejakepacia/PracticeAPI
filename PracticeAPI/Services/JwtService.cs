@@ -27,7 +27,7 @@ namespace PracticeAPI.Services
             if (string.IsNullOrWhiteSpace(loginRequest.UserName) || string.IsNullOrWhiteSpace(loginRequest.Password))
                 return null;
 
-            var userAccount = _dbContext.UserAccounts.FirstOrDefault(x => x.username == loginRequest.UserName);
+            var userAccount = _dbContext.userAccount.FirstOrDefault(x => x.username == loginRequest.UserName);
 
             if (userAccount is null)
                 return null;

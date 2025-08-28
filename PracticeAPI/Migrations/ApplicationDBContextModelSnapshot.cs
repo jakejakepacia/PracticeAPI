@@ -39,7 +39,7 @@ namespace PracticeAPI.Migrations
 
                     b.HasKey("userId");
 
-                    b.ToTable("UserAccounts");
+                    b.ToTable("userAccount");
                 });
 #pragma warning restore 612, 618
         }

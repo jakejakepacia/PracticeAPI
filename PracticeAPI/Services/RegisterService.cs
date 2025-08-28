@@ -28,7 +28,7 @@ namespace PracticeAPI.Services
             newUser.hashedPassword = _passwordHasher.HashPassword(newUser, model.Password);
 
 
-            _dbContext.UserAccounts.Add(newUser);
+            _dbContext.userAccount.Add(newUser);
             _dbContext.SaveChanges();
 
 
