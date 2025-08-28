@@ -2,8 +2,8 @@
 {
     public class User
     {
-        public int Id { get; set; }
-        public required string Username { get; set; }
-        public string HashedPassword { get; set; }
+        public int userId { get; set; }
+        public required string username { get; set; }
+        public string hashedPassword { get; set; }
     }
 }

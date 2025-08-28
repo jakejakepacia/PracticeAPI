@@ -27,12 +27,12 @@ namespace PracticeAPI.Services
             if (string.IsNullOrWhiteSpace(loginRequest.UserName) || string.IsNullOrWhiteSpace(loginRequest.Password))
                 return null;
 
-            var userAccount = _dbContext.Users.FirstOrDefault(x => x.Username == loginRequest.UserName);
+            var userAccount = _dbContext.UserAccounts.FirstOrDefault(x => x.username == loginRequest.UserName);
 
             if (userAccount is null)
                 return null;
 
-            var result = _hasher.VerifyHashedPassword(userAccount, userAccount.HashedPassword, loginRequest.Password);
+            var result = _hasher.VerifyHashedPassword(userAccount, userAccount.hashedPassword, loginRequest.Password);
 
             if (result == PasswordVerificationResult.Failed)
                 return null;
@@ -47,8 +47,8 @@ namespace PracticeAPI.Services
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                  new Claim(ClaimTypes.NameIdentifier, userAccount.Id.ToString()),
-                  new Claim(ClaimTypes.Name, userAccount.Username),
+                  new Claim(ClaimTypes.NameIdentifier, userAccount.userId.ToString()),
+                  new Claim(ClaimTypes.Name, userAccount.username),
                 }),
 
                 Expires = tokenExpiryTimeStamp,
@@ -66,7 +66,7 @@ namespace PracticeAPI.Services
 
             return new LoginResponseModel
             {
-                Id = userAccount.Id,
+                Id = userAccount.userId,
                 AccessToken = accessToken,
                 Username = loginRequest.UserName,
                 ExpiresIn = (int)tokenExpiryTimeStamp.Subtract(DateTime.UtcNow).TotalSeconds

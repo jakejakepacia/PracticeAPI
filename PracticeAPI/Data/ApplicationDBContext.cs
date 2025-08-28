@@ -10,6 +10,6 @@ namespace PracticeAPI.Data
             
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> UserAccounts { get; set; }
     }
 }

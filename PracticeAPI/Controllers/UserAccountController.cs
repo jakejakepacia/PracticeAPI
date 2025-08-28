@@ -18,7 +18,7 @@ namespace PracticeAPI.Controllers
         [HttpGet("{id}")]
         public async Task<User?> GetUserInfo(int id)
         {
-            return await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == id);
+            return await _dbContext.UserAccounts.FirstOrDefaultAsync(x => x.userId == id);
         }
     }
 }

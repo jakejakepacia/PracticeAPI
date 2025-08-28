@@ -22,13 +22,13 @@ namespace PracticeAPI.Services
                 return OperationResult.FailureResult(new List<string> { "Username already taken" });
 
             var newUser = new User{
-                Username= model.Username
+                username= model.Username
             };
 
-            newUser.HashedPassword = _passwordHasher.HashPassword(newUser, model.Password);
+            newUser.hashedPassword = _passwordHasher.HashPassword(newUser, model.Password);
 
 
-            _dbContext.Users.Add(newUser);
+            _dbContext.UserAccounts.Add(newUser);
             _dbContext.SaveChanges();
 
 
@@ -37,9 +37,7 @@ namespace PracticeAPI.Services
 
         private bool CheckUsernameIfTaken(string username)
         {
-            var user = _dbContext.Users.FirstOrDefault(u => u.Username == username);
-
-           return user != null;
+            return false;
         }
     }
 }
