@@ -37,7 +37,14 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"),
+    npgsqlOptions => npgsqlOptions.EnableRetryOnFailure())
+.EnableSensitiveDataLogging()
+.LogTo(Console.WriteLine, LogLevel.Information));
+
+var connection = builder.Configuration.GetConnectionString("DefaultConnection");
+Console.WriteLine($"### USING DB CONNECTION: {connection}");
+
 
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 var secretKey = Encoding.ASCII.GetBytes(jwtSettings["SecretKey"]!);
