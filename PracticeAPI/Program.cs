@@ -78,6 +78,7 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<JwtService>();
 builder.Services.AddScoped<RegisterService>();
+builder.Services.AddScoped<ProductService>();
 
 var app = builder.Build();
 

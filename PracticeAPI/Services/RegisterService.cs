@@ -25,10 +25,10 @@ namespace PracticeAPI.Services
                 username= model.Username
             };
 
-            newUser.hashedPassword = _passwordHasher.HashPassword(newUser, model.Password);
+            newUser.hashedpassword = _passwordHasher.HashPassword(newUser, model.Password);
 
 
-            _dbContext.userAccount.Add(newUser);
+            _dbContext.UserAccount.Add(newUser);
             _dbContext.SaveChanges();
 
 
@@ -37,7 +37,7 @@ namespace PracticeAPI.Services
 
         private bool CheckUsernameIfTaken(string username)
         {
-            var user = _dbContext.userAccount.FirstOrDefault(u => u.username == username);
+            var user = _dbContext.UserAccount.FirstOrDefault(u => u.username == username);
 
            return user != null;
         }
